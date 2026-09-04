@@ -15,7 +15,7 @@ jobs:
 
       - name: Extract ZIP and Prepare Environment
         run: |
-          unzip -o fileflex (1).zip -d ./
+          unzip -o fileflex.zip -d ./
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env.example
           keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
@@ -28,6 +28,10 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Install Android Platforms & Build-Tools
+        run: |
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
 
       - name: Setup Gradle 9.3.1
         uses: gradle/actions/setup-gradle@v4
