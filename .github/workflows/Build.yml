@@ -15,7 +15,7 @@ jobs:
 
       - name: Extract ZIP and Prepare Environment
         run: |
-          unzip -o fileflex.zip -d ./
+          unzip -o fileflex(1).zip -d ./
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env.example
           keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
